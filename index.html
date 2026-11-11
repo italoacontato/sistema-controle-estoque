@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StockControl | Controle de Estoque</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Ícones Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+</head>
+
+<body>
+
+    <!-- MENU LATERAL -->
+    <aside class="sidebar">
+
+        <h2 class="logo">
+            <i class="bi bi-box-seam"></i>
+            StockControl
+        </h2>
+
+        <nav class="menu">
+            <a href="#dashboard" class="active">
+                <i class="bi bi-grid"></i>
+                Dashboard
+            </a>
+
+            <a href="#produtos">
+                <i class="bi bi-box"></i>
+                Produtos
+            </a>
+
+            <a href="#movimentacoes">
+                <i class="bi bi-arrow-left-right"></i>
+                Movimentações
+            </a>
+
+            <a href="#alertas">
+                <i class="bi bi-exclamation-triangle"></i>
+                Estoque baixo
+            </a>
+
+            <a href="#relatorios">
+                <i class="bi bi-file-earmark-bar-graph"></i>
+                Relatórios
+            </a>
+        </nav>
+
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <h1>Controle de Estoque</h1>
+            <span id="data-atual"></span>
+        </header>
+
+        <!-- DASHBOARD -->
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="dashboard">
+
+            <div class="section-header">
+                <div>
+                    <h2>Dashboard</h2>
+                    <p>Visão geral do seu estoque.</p>
+                </div>
+            </div>
+
+            <!-- CARTÕES DE INDICADORES -->
+            <div class="cards-container">
+
+                <div class="dashboard-card">
+                    <div class="card-icon blue">
+                        <i class="bi bi-box-seam"></i>
+                    </div>
+
+                    <div class="card-info">
+                        <p>Total de produtos</p>
+                        <h3 id="total-produtos">0</h3>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-icon green">
+                        <i class="bi bi-boxes"></i>
+                    </div>
+
+                    <div class="card-info">
+                        <p>Itens em estoque</p>
+                        <h3 id="total-itens">0</h3>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-icon orange">
+                        <i class="bi bi-exclamation-triangle"></i>
+                    </div>
+
+                    <div class="card-info">
+                        <p>Estoque baixo</p>
+                        <h3 id="estoque-baixo">0</h3>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-icon red">
+                        <i class="bi bi-arrow-left-right"></i>
+                    </div>
+
+                    <div class="card-info">
+                        <p>Movimentações</p>
+                        <h3 id="total-movimentacoes">0</h3>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RESUMO DO ESTOQUE -->
+            <div class="dashboard-content">
+
+                <div class="dashboard-panel">
+
+                    <h3>Resumo do estoque</h3>
+
+                    <p class="panel-description">
+                        Acompanhe a situação geral dos produtos.
+                    </p>
+
+                    <div class="stock-summary">
+                        <div>
+                            <span>Produtos cadastrados</span>
+                            <strong id="resumo-produtos">0</strong>
+                        </div>
+
+                        <div>
+                            <span>Unidades disponíveis</span>
+                            <strong id="resumo-itens">0</strong>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ALERTAS -->
+                <div class="dashboard-panel">
+
+                    <h3>Alertas de estoque</h3>
+
+                    <p class="panel-description">
+                        Produtos que precisam de atenção.
+                    </p>
+
+                    <div class="alert-message">
+                        <i class="bi bi-info-circle"></i>
+
+                        <span>
+                            Nenhum alerta registrado no momento.
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- PRODUTOS -->
+        <section id="produtos" class="products-section">
+
+            <div class="section-header">
+                <div>
+                    <h2>Produtos</h2>
+                    <p>Cadastre e acompanhe os produtos do estoque.</p>
+                </div>
+            </div>
+
+            <!-- FORMULÁRIO DE CADASTRO -->
+            <div class="product-form-container">
+
+                <h3>Cadastrar novo produto</h3>
+
+                <form id="product-form">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="product-name">Nome do produto</label>
+                            <input type="text" id="product-name" placeholder="Ex: Teclado Gamer" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product-category">Categoria</label>
+                            <select id="product-category" required>
+                                <option value="">Selecione uma categoria</option>
+                                <option value="Informática">Informática</option>
+                                <option value="Eletrônicos">Eletrônicos</option>
+                                <option value="Acessórios">Acessórios</option>
+                                <option value="Escritório">Escritório</option>
+                                <option value="Outros">Outros</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product-price">Preço (R$)</label>
+                            <input type="number" id="product-price" placeholder="0,00" min="0.01" step="0.01" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product-quantity">Quantidade</label>
+                            <input type="number" id="product-quantity" placeholder="Ex: 15" min="0" step="1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product-minimum">Estoque mínimo</label>
+                            <input type="number" id="product-minimum" placeholder="Ex: 5" min="0" step="1" required>
+                        </div>
+
+                    </div>
+
+                    <div class="form-buttons">
+
+                        <button type="submit" class="btn-submit" id="btn-submit">
+                            <i class="bi bi-plus-circle"></i>
+                            Cadastrar produto
+                        </button>
+
+                        <button type="button" class="btn-cancel" id="btn-cancel" hidden>
+                            <i class="bi bi-x-circle"></i>
+                            Cancelar edição
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <!-- TABELA DE PRODUTOS -->
+            <div class="product-table-container">
+
+                <div class="table-header">
+                    <h3>Produtos cadastrados</h3>
+                    <span id="product-count">0 produtos</span>
+                </div>
+
+                <div class="table-responsive">
+
+                    <table class="product-table">
+
+
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Categoria</th>
+                                <th>Preço</th>
+                                <th>Quantidade</th>
+                                <th>Estoque mínimo</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+
+                        <tbody id="product-list">
+
+                            <tr>
+                                <td colspan="7" class="empty-message">
+                                    Nenhum produto cadastrado.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- MOVIMENTAÇÕES -->
+        <section id="movimentacoes" class="movement-section">
+
+            <div class="section-header">
+                <div>
+                    <h2>Movimentações</h2>
+                    <p>Registre a entrada de mercadorias no estoque.</p>
+                </div>
+            </div>
+
+            <!-- ENTRADA DE MERCADORIAS -->
+            <div class="movement-form-container">
+
+                <h3>Registrar entrada</h3>
+
+                <form id="entry-form">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="entry-product">Produto</label>
+
+                            <select id="entry-product" required>
+                                <option value="">Selecione um produto</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="entry-quantity">Quantidade recebida</label>
+
+                            <input type="number" id="entry-quantity" placeholder="Ex: 10" min="1" step="1" required>
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <i class="bi bi-plus-circle"></i>
+                        Confirmar entrada
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- FORMULÁRIO DE SAÍDA -->
+            <div class="movement-form-container">
+                <h3>
+                    <i class="bi bi-box-arrow-up"></i>
+                    Registrar saída de produtos
+                </h3>
+
+                <form id="exit-form" class="movement-form">
+                    <div class="form-group">
+                        <label for="exit-product">Produto</label>
+                        <select id="exit-product" required>
+                            <option value="">Selecione um produto</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exit-quantity">Quantidade de saída</label>
+                        <input type="number" id="exit-quantity" min="1" step="1" placeholder="Ex: 5" required>
+                    </div>
+
+                    <button type="submit" class="btn-submit btn-exit">
+                        <i class="bi bi-dash-circle"></i>
+                        Confirmar saída
+                    </button>
+                </form>
+            </div>
+
+
+
+            <!-- HISTÓRICO DE MOVIMENTAÇÕES -->
+            <div class="movement-table-container">
+
+                <div class="report-header">
+                    <div>
+                        <h3>Histórico de movimentações</h3>
+                        <p>Consulte todas as entradas e saídas registradas.</p>
+                    </div>
+
+                    <div class="form-group filter-group">
+                        <label for="movement-filter">Filtrar movimentações</label>
+
+                        <select id="movement-filter">
+                            <option value="Todas">Todas</option>
+                            <option value="Entrada">Entradas</option>
+                            <option value="Saída">Saídas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+
+                    <table class="product-table">
+
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Quantidade</th>
+                                <th>Data</th>
+                                <th>Tipo</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="movement-list">
+
+                            <tr>
+                                <td colspan="4" class="empty-message">
+                                    Nenhuma movimentação registrada.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+        <!-- ALERTAS -->
+
+        <section id="alertas" class="content-section">
+            <div class="section-header">
+                <h2>
+                    <i class="bi bi-exclamation-triangle"></i>
+                    Alertas de estoque
+                </h2>
+
+                <p>Acompanhe os produtos que precisam de reposição.</p>
+            </div>
+
+            <div class="alert-summary">
+                <div class="alert-summary-icon">
+                    <i class="bi bi-exclamation-circle"></i>
+                </div>
+
+                <div>
+                    <h3 id="alert-count">0</h3>
+                    <p>Produtos com estoque baixo</p>
+                </div>
+            </div>
+
+            <div class="alert-table-container">
+                <h3>Produtos que precisam de reposição</h3>
+
+                <table class="product-table">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Categoria</th>
+                            <th>Quantidade atual</th>
+                            <th>Estoque mínimo</th>
+                            <th>Situação</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="alert-list">
+                        <tr>
+                            <td colspan="5" class="empty-message">
+                                Nenhum alerta registrado.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+
+
+        <!-- RELATÓRIOS -->
+        <section id="relatorios" class="reports-section">
+
+            <div class="section-header">
+                <div>
+                    <h2>Relatórios</h2>
+                    <p>Visualize informações gerais sobre o estoque.</p>
+                </div>
+            </div>
+
+            <!-- RESUMO DAS MOVIMENTAÇÕES -->
+
+            <div class="report-cards">
+
+                <div class="report-card">
+                    <div class="report-icon green">
+                        <i class="bi bi-box-arrow-in-down"></i>
+                    </div>
+
+                    <div>
+                        <p>Total de entradas</p>
+                        <h3 id="total-entradas">0</h3>
+                    </div>
+                </div>
+
+                <div class="report-card">
+                    <div class="report-icon red">
+                        <i class="bi bi-box-arrow-up"></i>
+                    </div>
+
+                    <div>
+                        <p>Total de saídas</p>
+                        <h3 id="total-saidas">0</h3>
+                    </div>
+                </div>
+
+                <div class="report-card">
+                    <div class="report-icon blue">
+                        <i class="bi bi-currency-dollar"></i>
+                    </div>
+
+                    <div>
+                        <p>Valor total do estoque</p>
+                        <h3 id="valor-total-estoque">R$ 0,00</h3>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RELATÓRIO DE PRODUTOS -->
+
+            <div class="report-table-container">
+
+                <h3>Relatório de produtos</h3>
+
+                <div class="table-responsive">
+
+                    <table class="product-table">
+
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Categoria</th>
+                                <th>Quantidade</th>
+                                <th>Preço unitário</th>
+                                <th>Valor total</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="report-list">
+
+                            <tr>
+                                <td colspan="5" class="empty-message">
+                                    Nenhum produto cadastrado.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer class="footer">
+            <p>StockControl &copy; <span id="ano-atual"></span></p>
+        </footer>
+
+    </main>
+
+    <!-- JAVASCRIPT -->
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

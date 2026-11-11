@@ -1,0 +1,15 @@
+
+# Dependências
+node_modules/
+
+# Banco de dados local
+server/estoque.db
+server/estoque.db-shm
+server/estoque.db-wal
+
+# Arquivos de ambiente
+.env
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
