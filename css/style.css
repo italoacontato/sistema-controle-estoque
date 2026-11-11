@@ -750,3 +750,354 @@ section h2 {
     }
 
 }
+
+
+/* ========================================
+   RESPONSIVIDADE GERAL
+======================================== */
+
+/* TABLETS E TELAS MENORES */
+
+@media (max-width: 1024px) {
+
+    .main-content {
+        padding: 22px;
+        min-width: 0;
+    }
+
+    .sidebar {
+        width: 220px;
+        flex-shrink: 0;
+    }
+
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dashboard-content {
+        grid-template-columns: 1fr;
+    }
+
+    .report-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+/* CELULARES */
+
+@media (max-width: 768px) {
+
+    /* ESTRUTURA PRINCIPAL */
+
+    body {
+        flex-direction: column;
+        overflow-x: hidden;
+    }
+
+    /* MENU LATERAL */
+
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+        padding: 18px;
+    }
+
+    .logo {
+        margin-bottom: 18px;
+        font-size: 20px;
+    }
+
+    .menu {
+        flex-direction: row;
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        scrollbar-width: thin;
+    }
+
+    .menu a {
+        flex-shrink: 0;
+        padding: 11px 13px;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    .menu a i {
+        margin-right: 5px;
+    }
+
+    /* CONTEÚDO */
+
+    .main-content {
+        width: 100%;
+        padding: 18px;
+    }
+
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 22px;
+    }
+
+    section {
+        padding: 18px;
+    }
+
+    /* DASHBOARD */
+
+    .cards-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .dashboard-card {
+        padding: 15px;
+        gap: 10px;
+        min-width: 0;
+    }
+
+    .card-icon {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        font-size: 19px;
+    }
+
+    .card-info {
+        min-width: 0;
+    }
+
+    .card-info p {
+        font-size: 12px;
+    }
+
+    .card-info h3 {
+        font-size: 21px;
+        overflow-wrap: anywhere;
+    }
+
+    .dashboard-content {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-panel {
+        padding: 18px;
+        min-width: 0;
+    }
+
+    /* FORMULÁRIOS */
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .product-form-container,
+    .product-table-container,
+    .movement-form-container,
+    .movement-table-container,
+    .report-table-container {
+        padding: 18px;
+        min-width: 0;
+    }
+
+    .form-buttons {
+        width: 100%;
+    }
+
+    .btn-submit,
+    .btn-cancel {
+        padding: 12px 16px;
+    }
+
+    /* TABELAS */
+
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .product-table {
+        min-width: 650px;
+    }
+
+    /* ALERTAS */
+
+    .alert-summary {
+        padding: 16px;
+        gap: 12px;
+    }
+
+    .alert-summary-icon {
+        width: 45px;
+        height: 45px;
+        flex-shrink: 0;
+        font-size: 21px;
+    }
+
+    .alert-summary h3 {
+        font-size: 23px;
+    }
+
+    .alert-table-container {
+        padding: 18px;
+    }
+
+    /* RELATÓRIOS */
+
+    .report-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+
+    .filter-group {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .filter-group select {
+        width: 100%;
+    }
+
+    .report-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .report-card {
+        padding: 15px;
+        gap: 10px;
+        min-width: 0;
+    }
+
+    .report-icon {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        font-size: 19px;
+    }
+
+    .report-card h3 {
+        font-size: 18px;
+        overflow-wrap: anywhere;
+    }
+
+}
+
+/* CELULARES PEQUENOS */
+
+@media (max-width: 480px) {
+
+    .main-content {
+        padding: 12px;
+    }
+
+    .sidebar {
+        padding: 15px 12px;
+    }
+
+    .menu {
+        gap: 5px;
+    }
+
+    .menu a {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    section {
+        padding: 15px;
+    }
+
+    .section-header {
+        margin-bottom: 18px;
+    }
+
+    .section-header h2 {
+        font-size: 20px;
+    }
+
+    .cards-container {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-card {
+        padding: 17px;
+    }
+
+    .dashboard-panel {
+        padding: 15px;
+    }
+
+    .stock-summary span {
+        font-size: 12px;
+    }
+
+    .stock-summary strong {
+        font-size: 16px;
+    }
+
+    .report-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .alert-summary h3 {
+        font-size: 20px;
+    }
+
+    .table-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .product-form-container h3,
+    .product-table-container h3,
+    .movement-form-container h3,
+    .movement-table-container h3,
+    .report-table-container h3 {
+        font-size: 16px;
+        margin-bottom: 18px;
+    }
+
+    .btn-submit,
+    .btn-cancel {
+        width: 100%;
+    }
+
+    .form-buttons {
+        flex-direction: column;
+    }
+
+    .footer {
+        padding: 18px 12px;
+        font-size: 12px;
+    }
+
+}
+
+/* TELAS MUITO PEQUENAS */
+
+@media (max-width: 360px) {
+
+    .main-content {
+        padding: 10px;
+    }
+
+    .dashboard-card {
+        padding: 13px;
+    }
+
+    .card-info h3 {
+        font-size: 19px;
+    }
+
+    .menu a {
+        font-size: 11px;
+        padding: 9px;
+    }
+
+}
