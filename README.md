@@ -96,3 +96,6 @@ O banco de dados é utilizado localmente pelo servidor e não é incluído no re
 ---
 
 Desenvolvido como projeto de aprendizado em desenvolvimento web.
+
+![alt text](sistema-controle-estoque-desktop.png)
+![alt text](sistema-controle-estoque-mobile.png)
